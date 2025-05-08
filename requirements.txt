@@ -1,0 +1,7 @@
+Flask==2.3.0
+mariadb==1.1.4
+Flask-SQLAlchemy
+SQLAlchemy
+Flask-WTF
+Flask_cors
+pymysql

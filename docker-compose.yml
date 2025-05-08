@@ -1,0 +1,43 @@
+services:
+  app:
+    container_name: flask_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./authentification.env
+    volumes:
+      - ./application:/app
+    command: python run.py
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  db:
+    container_name: mariadb_cont
+    build:
+      context: ./mariadb-docker
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./authentification.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app_network:
+
+volumes:
+  db_data:
