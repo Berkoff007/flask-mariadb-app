@@ -1,6 +1,5 @@
 # Utiliser une image officielle de Python
-FROM python:3.11
-
+FROM python:3.9-slim-buster
 # Définir le répertoire de travail
 WORKDIR /app
 

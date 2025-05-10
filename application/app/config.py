@@ -1,14 +1,15 @@
 import os
 
 class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev'
+
+    # Configuration de la base de données
+    if os.environ.get('FLASK_ENV') == 'docker':
+        # Assurez-vous que 'db' correspond bien au nom de votre conteneur MariaDB
+       SQLALCHEMY_DATABASE_URI = f"mariadb+pymysql://{os.environ.get('MARIADB_USER')}:{os.environ.get('MARIADB_PASSWORD')}@db/{os.environ.get('MARIADB_DATABASE')}"
+    else:
+        SQLALCHEMY_DATABASE_URI = 'mariadb+pymysql://root:root@localhost/annuaires_student'
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    DB_USER = os.getenv("MYSQLUSER")
-    DB_PASSWORD = os.getenv("MYSQLPASSWORD")
-    DB_HOST = os.getenv("MYSQLHOST")
-    DB_PORT = os.getenv("MYSQLPORT", "3306")
-    DB_NAME = os.getenv("MYSQLDATABASE")  # <-- ici on prend 'railway'
-
-    SQLALCHEMY_DATABASE_URI = (
-        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    )
+config = Config()

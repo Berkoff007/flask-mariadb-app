@@ -8,6 +8,8 @@ services:
       - "5000:5000"
     env_file:
       - ./authentification.env
+    environment:
+      FLASK_ENV: docker
     volumes:
       - ./application:/app
     command: python run.py
@@ -24,17 +26,17 @@ services:
     restart: always
     env_file:
       - ./authentification.env
+    environment:
+       MARIADB_ROOT_PASSWORD: root
+       MARIADB_DATABASE: annuaires_student
+       MARIADB_USER: edmond
+       MARIADB_PASSWORD: adams001
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - app_network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 networks:
   app_network:
