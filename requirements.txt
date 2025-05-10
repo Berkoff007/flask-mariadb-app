@@ -3,5 +3,5 @@ mariadb==1.1.4
 Flask-SQLAlchemy
 SQLAlchemy
 Flask-WTF
-Flask-Cors
+Flask_cors
 pymysql

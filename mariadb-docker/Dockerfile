@@ -1,5 +1,5 @@
 # Utiliser de l'image officielle de mariadb
-FROM mariadb:latest
+FROM mariadb:10.11
 
 # Définir un volume pour les données de la base
 VOLUME ["/var/lib/mysql"]
