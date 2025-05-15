@@ -41,7 +41,6 @@ services:
 
 networks:
   app_network:
-    external: true  # Rend le réseau persistant après un restart
 
 volumes:
   db_data:
