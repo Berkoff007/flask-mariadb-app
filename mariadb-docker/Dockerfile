@@ -10,6 +10,13 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Définir les variables d’environnement MySQL
+ENV MARIADB_ROOT_PASSWORD=root
+ENV MARIADB_USER=edmond
+ENV MARIADB_PASSWORD=adams001
+ENV MARIADB_DATABASE=annuaires_student
+ENV MariaDB_HOST=mydb_cont15
+
 # Copie les fichiers d'initialisation
 COPY init/ /docker-entrypoint-initdb.d/
 

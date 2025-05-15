@@ -1,4 +1,6 @@
 from app import app, db
+import os
+os.environ["FLASK_APP"] = "run.py"
 
 print('Starting the application...') 
 

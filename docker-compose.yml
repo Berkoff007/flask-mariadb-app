@@ -34,12 +34,14 @@ services:
     ports:
       - "3306:3306"
     volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
       - db_data:/var/lib/mysql
     networks:
       - app_network
 
 networks:
   app_network:
+    external: true  # Rend le réseau persistant après un restart
 
 volumes:
   db_data:
