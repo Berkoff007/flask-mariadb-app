@@ -15,7 +15,7 @@ ENV MARIADB_ROOT_PASSWORD=root
 ENV MARIADB_USER=edmond
 ENV MARIADB_PASSWORD=adams001
 ENV MARIADB_DATABASE=annuaires_student
-ENV MariaDB_HOST=mydb_cont15
+ENV MARIADB_HOST=nouveau_cont_db 
 
 # Copie les fichiers d'initialisation
 COPY init/ /docker-entrypoint-initdb.d/
